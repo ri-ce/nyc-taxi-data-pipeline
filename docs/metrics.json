@@ -1,0 +1,41 @@
+{
+  "source_file": "yellow_tripdata_2025-01.parquet",
+  "month_start": "2025-01-01",
+  "month_end_exclusive": "2025-02-01",
+  "raw_rows": 3475226,
+  "clean_rows": 3322947,
+  "rejected_rows": 152279,
+  "retention_rate_pct": 95.62,
+  "total_revenue": 88306933.9,
+  "total_passengers": 3677499,
+  "average_fare": 17.72,
+  "average_distance_miles": 3.16,
+  "average_duration_min": 14.68,
+  "peak_day": {
+    "date": "2025-01-25",
+    "trips": 133041
+  },
+  "peak_hour": {
+    "hour": 18,
+    "trips": 242156
+  },
+  "top_pickup_zone": {
+    "location_id": 161,
+    "trips": 163813
+  },
+  "pickup_range": {
+    "min": "2025-01-01 00:00:00",
+    "max": "2025-01-31 23:59:59"
+  },
+  "quality_breakdown": {
+    "raw_rows": 3475226,
+    "missing_timestamps": 0,
+    "out_of_month": 22,
+    "nonpositive_duration": 2051,
+    "excessive_duration": 1377,
+    "invalid_distance": 91055,
+    "invalid_total_amount": 63037,
+    "passenger_outlier": 18
+  },
+  "generated_at": "2026-10-21T14:15:17+00:00"
+}

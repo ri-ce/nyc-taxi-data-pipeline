@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NYC Yellow Taxi Data Pipeline</title>
+  <style>
+    body { margin: 0; background: #f6f8fb; color: #13273d;
+      font-family: "Segoe UI", "Microsoft YaHei", sans-serif; line-height: 1.6; }
+    main { width: min(1100px, calc(100% - 32px)); margin: 0 auto; padding: 48px 0 70px; }
+    h1 { margin: 0 0 10px; font-size: clamp(38px, 7vw, 68px); line-height: 1.05; }
+    .lead { max-width: 760px; color: #607184; }
+    .links { display: flex; flex-wrap: wrap; gap: 10px; margin: 24px 0 30px; }
+    .links a { padding: 9px 14px; color: white; background: #13273d;
+      border: 1px solid #13273d; border-radius: 9px; text-decoration: none;
+      font-weight: 700; font-size: 14px; }
+    .links a.secondary { color: #13273d; background: white; border-color: #dce5ed; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 30px 0; }
+    .metric, section { background: white; border: 1px solid #dce5ed; border-radius: 16px; }
+    .metric { padding: 20px; }
+    .metric strong { display: block; font-size: 28px; }
+    .metric span { color: #607184; font-size: 14px; }
+    section { padding: 24px; margin-top: 18px; overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    th, td { padding: 10px 12px; border-bottom: 1px solid #e5ebf1; text-align: left; }
+    th { background: #edf4fb; }
+    @media (max-width: 760px) { .metrics { grid-template-columns: 1fr 1fr; } }
+  </style>
+</head>
+<body>
+<main>
+  <h1>NYC Yellow Taxi<br>Batch Data Pipeline</h1>
+  <p class="lead">
+    使用 DuckDB 对纽约市黄色出租车公开 Parquet 数据执行数据质量检查、清洗、
+    日期与小时维度聚合、支付方式分析和热门上车区域分析。
+  </p>
+  <div class="links">
+    <a href="https://github.com/ri-ce/nyc-taxi-data-pipeline">GitHub 源码</a>
+    <a class="secondary" href="test-report.html">自动化测试报告</a>
+    <a class="secondary" href="https://ri-ce.github.io/qa-automation-portfolio/">返回作品集</a>
+  </div>
+  <div class="metrics"><div class="metric"><strong>3,322,947</strong><span>有效行程</span></div><div class="metric"><strong>$88,306,933.90</strong><span>总营收</span></div><div class="metric"><strong>$17.72</strong><span>平均客单价</span></div><div class="metric"><strong>95.62%</strong><span>数据保留率</span></div></div>
+  <section>
+    <h2>关键结果</h2>
+    <p>高峰日：{&#x27;date&#x27;: &#x27;2025-01-25&#x27;, &#x27;trips&#x27;: 133041}</p>
+    <p>高峰小时：{&#x27;hour&#x27;: 18, &#x27;trips&#x27;: 242156}</p>
+    <p>热门上车区域：{&#x27;location_id&#x27;: 161, &#x27;trips&#x27;: 163813}</p>
+  </section>
+  <section><h2>每日指标</h2><table><thead><tr><th>日期</th><th>行程数</th><th>营收</th><th>平均距离</th><th>平均时长</th></tr></thead><tbody><tr><td>2025-01-01</td><td>83,313</td><td>$2,316,147.26</td><td>3.94</td><td>14.94</td></tr><tr><td>2025-01-02</td><td>80,996</td><td>$2,375,982.02</td><td>3.73</td><td>16.21</td></tr><tr><td>2025-01-03</td><td>87,411</td><td>$2,437,665.46</td><td>3.41</td><td>15.54</td></tr><tr><td>2025-01-04</td><td>94,349</td><td>$2,502,729.86</td><td>3.27</td><td>14.59</td></tr><tr><td>2025-01-05</td><td>76,528</td><td>$2,229,078.06</td><td>3.86</td><td>14.12</td></tr><tr><td>2025-01-06</td><td>77,169</td><td>$2,210,846.81</td><td>3.54</td><td>14.84</td></tr><tr><td>2025-01-07</td><td>96,799</td><td>$2,578,720.54</td><td>3.07</td><td>14.32</td></tr><tr><td>2025-01-08</td><td>109,107</td><td>$2,825,385.32</td><td>2.92</td><td>14.43</td></tr><tr><td>2025-01-09</td><td>114,010</td><td>$3,012,929.35</td><td>3.02</td><td>14.92</td></tr><tr><td>2025-01-10</td><td>106,449</td><td>$2,857,107.97</td><td>3.16</td><td>14.86</td></tr><tr><td>2025-01-11</td><td>118,411</td><td>$2,913,240.36</td><td>3.0</td><td>13.48</td></tr><tr><td>2025-01-12</td><td>99,382</td><td>$2,637,562.08</td><td>3.54</td><td>13.54</td></tr><tr><td>2025-01-13</td><td>96,290</td><td>$2,604,412.84</td><td>3.27</td><td>14.64</td></tr><tr><td>2025-01-14</td><td>116,262</td><td>$3,038,379.34</td><td>2.96</td><td>14.65</td></tr><tr><td>2025-01-15</td><td>120,066</td><td>$3,158,187.45</td><td>2.98</td><td>14.95</td></tr><tr><td>2025-01-16</td><td>130,924</td><td>$3,502,133.77</td><td>3.03</td><td>15.28</td></tr><tr><td>2025-01-17</td><td>114,139</td><td>$3,060,050.70</td><td>3.16</td><td>15.52</td></tr><tr><td>2025-01-18</td><td>116,262</td><td>$2,800,529.21</td><td>3.0</td><td>13.97</td></tr><tr><td>2025-01-19</td><td>115,099</td><td>$2,718,579.50</td><td>3.13</td><td>12.79</td></tr><tr><td>2025-01-20</td><td>87,166</td><td>$3,289,685.48</td><td>3.99</td><td>13.86</td></tr><tr><td>2025-01-21</td><td>111,819</td><td>$2,948,166.03</td><td>3.1</td><td>14.89</td></tr><tr><td>2025-01-22</td><td>121,107</td><td>$3,086,248.70</td><td>2.85</td><td>14.74</td></tr><tr><td>2025-01-23</td><td>130,649</td><td>$3,384,237.88</td><td>2.89</td><td>15.2</td></tr><tr><td>2025-01-24</td><td>122,448</td><td>$3,175,141.31</td><td>2.98</td><td>15.14</td></tr><tr><td>2025-01-25</td><td>133,041</td><td>$3,180,763.80</td><td>2.81</td><td>13.96</td></tr><tr><td>2025-01-26</td><td>98,980</td><td>$2,614,682.72</td><td>3.48</td><td>13.6</td></tr><tr><td>2025-01-27</td><td>89,328</td><td>$2,443,650.21</td><td>3.3</td><td>15.13</td></tr><tr><td>2025-01-28</td><td>109,101</td><td>$2,830,997.85</td><td>2.95</td><td>14.95</td></tr><tr><td>2025-01-29</td><td>115,322</td><td>$3,004,204.77</td><td>2.99</td><td>14.94</td></tr><tr><td>2025-01-30</td><td>126,184</td><td>$3,345,571.73</td><td>3.0</td><td>15.7</td></tr><tr><td>2025-01-31</td><td>124,836</td><td>$3,223,915.52</td><td>3.02</td><td>15.38</td></tr></tbody></table></section>
+  <section><h2>支付方式</h2><table><thead><tr><th>支付方式</th><th>行程数</th><th>营收</th><th>占比</th></tr></thead><tbody><tr><td>Credit card</td><td>2,422,710</td><td>$67,647,902.45</td><td>72.91%</td></tr><tr><td>Other</td><td>484,516</td><td>$9,851,759.64</td><td>14.58%</td></tr><tr><td>Cash</td><td>367,775</td><td>$8,668,937.67</td><td>11.07%</td></tr><tr><td>Dispute</td><td>35,717</td><td>$1,845,159.62</td><td>1.07%</td></tr><tr><td>No charge</td><td>12,229</td><td>$293,174.52</td><td>0.37%</td></tr></tbody></table></section>
+  <section><h2>热门上车区域</h2><table><thead><tr><th>上车区域 ID</th><th>行程数</th><th>营收</th><th>平均距离</th></tr></thead><tbody><tr><td>161</td><td>163,813</td><td>$3,872,651.97</td><td>2.21</td></tr><tr><td>237</td><td>159,291</td><td>$3,144,728.83</td><td>1.69</td></tr><tr><td>236</td><td>151,587</td><td>$3,044,953.84</td><td>1.86</td></tr><tr><td>132</td><td>134,736</td><td>$10,896,091.04</td><td>15.61</td></tr><tr><td>230</td><td>120,637</td><td>$3,181,764.39</td><td>2.82</td></tr><tr><td>186</td><td>114,993</td><td>$2,739,144.96</td><td>2.21</td></tr><tr><td>162</td><td>113,815</td><td>$2,662,388.56</td><td>2.2</td></tr><tr><td>142</td><td>107,518</td><td>$2,298,248.25</td><td>2.1</td></tr><tr><td>239</td><td>93,805</td><td>$1,951,935.02</td><td>2.09</td></tr><tr><td>163</td><td>92,672</td><td>$2,217,774.42</td><td>2.3</td></tr></tbody></table></section>
+  <section><h2>数据质量检查</h2><table><thead><tr><th>质量规则</th><th>异常数量</th></tr></thead><tbody><tr><td>raw_rows</td><td>3,475,226</td></tr><tr><td>missing_timestamps</td><td>0</td></tr><tr><td>out_of_month</td><td>22</td></tr><tr><td>nonpositive_duration</td><td>2,051</td></tr><tr><td>excessive_duration</td><td>1,377</td></tr><tr><td>invalid_distance</td><td>91,055</td></tr><tr><td>invalid_total_amount</td><td>63,037</td></tr><tr><td>passenger_outlier</td><td>18</td></tr></tbody></table></section>
+  <p>生成时间：2026-10-21T14:15:17+00:00</p>
+</main>
+</body>
+</html>
