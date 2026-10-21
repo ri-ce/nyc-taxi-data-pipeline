@@ -1,0 +1,44 @@
+name: Taxi pipeline tests
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Run pipeline tests
+        run: |
+          python -m pytest \
+            --html=docs/test-report.html \
+            --self-contained-html
+
+      - name: Run sample pipeline
+        run: |
+          python -m pipeline.run \
+            --source data/sample_yellow_tripdata_2025-01.csv \
+            --output-dir reports
+
+      - name: Upload test and pipeline reports
+        if: always()
+        uses: actions/upload-artifact@v7
+        with:
+          name: taxi-pipeline-reports
+          path: |
+            docs/test-report.html
+            reports/report.html
+            reports/metrics.json
